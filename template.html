@@ -1,0 +1,185 @@
+<script id="Heads" type="text/html">
+	<nav class="nav">
+      <a class="nav-link" href="#/login">Login</a>
+	  <a class="nav-link active" href="#/signup">Signup</a>
+	  <a class="nav-link" href="#/forgetpass">Forget Password</a>
+	</nav>
+</script>
+
+<script id="Login" type="text/html">
+	<div class="row">
+		<form action="login.php" method="post" id="LoginMainForm">
+			<div class="form-group">
+				<label id="fullname" class="col-md-6">Username: </label>
+					<div class="col-md-8">
+						<input id="LoginName" class="form-control" type="text" name="uname" placeholder="Name" />
+					</div>
+			</div>
+			<div class="form-group">
+				<label id="pword" class="col-md-6">Password: </label>
+					<div class="col-md-8">
+						<input id="LoginPassword" class="form-control" type="password" name="pwd" placeholder="password">
+					</div>
+			</div>
+			<div class="form-group">		
+				<div class="col-md-8">
+					<input id="submit" type="submit" class="btn btn-info" name="submit" value="Submit">				
+				</div>
+			</div>
+		</form>
+</script>
+
+<script id="LoginSuccess" type="text/html">
+<div class="form-group">
+	<p class="h1 text-center"> Logged In</p>
+
+<form method="get" id="PhpUpdateForm" action="#">
+<div class="row">
+<ul class="list-group">
+	<div class="form-group">
+	<li class="list-group-item"><label class="col-md-6">Username </label><br><input id="successusername" class="col-md-8" name="successusername" type="text" disabled></li>
+</div>
+<div class="form-group">
+	<li class="list-group-item"><label class="col-md-6">Firstname </label><br><input id="successfirstname" class="col-md-8" name="successfirstname" type="text" placeholder="Put Here"></li>
+</div>
+<div class="form-group">
+	<li class="list-group-item"><label class="col-md-6">Lastname </label><br><input id="successlastname" class="col-md-8" name="successlastname" type="text" placeholder="Put Here"></li>
+</div>
+<div class="form-group">
+	<li class="list-group-item"><label class="col-md-6">Gender </label><br><input id="successgender" name="successgender" class="col-md-8" type="text" placeholder="Put Here"></li>
+</div>
+<div class="form-group">
+	<li class="list-group-item"><label class="col-md-6">Email </label><br><input id="successemail" name="successemail" class="col-md-8" type="text" placeholder="Put Here"></li>
+</div>
+<div class="form-group">
+	<li class="list-group-item"><label class="col-md-6">Birthdate </label><br><input id="successbirthdate" class="col-md-8" name="successbirthdate" type="text" placeholder="Put Here"></li>
+</div>
+<div class="form-group">
+	<li class="list-group-item"><label class="col-md-6">Date Modified </label><br><input id="successdatemodified" class="col-md-8" name="successdatemodified" type="text" placeholder="Put Here"></li>
+</div>
+<div class="form-group">
+	<li class="list-group-item"><label class="col-md-6">Status </label><br><input id="successstatus" name="successstatus" class="col-md-8" type="text" placeholder="Put Here"></li>
+</div>
+</ul>
+</div>
+<a id="UpdateThis" name="UpdateThis" href="#/loginsuccess">Update</a>
+<a id="DeleteThis" href="#/loginsuccess">Delete</a>
+
+</form>
+
+<br>
+<br>
+<div id="clickSample"></div>
+</div>
+</script>
+
+<script id="Signup" type="text/html">
+	<div class="row">
+		<form method="post" id="MainForm" class="pure-form">
+			<div class="form-group row">
+				<ul class="list-group">
+					<li class="list-group-item">
+						<label id="firstnamess" class="col-sm col-md col-lg">User Name: </label>
+							<div class="col-sm col-md col-lg">
+								<input type="text" name="firstnames" id="firstname">
+							</div>
+					</li>
+					<li class="list-group-item">
+						<label id="lastnamess" class="col-sm col-md col-lg">First Name: </label>
+							<div class="col-sm col-md col-lg">
+								<input type="text" name="lastnames" id="lastname">
+							</div>
+					</li>
+					<li class="list-group-item">
+						<label id="unamess" class="col-sm col-md col-lg">Last Name: </label>
+							<div class="col-sm col-md col-lg">
+								<input type="text" name="unames" id="uname">
+							</div>
+					</li>
+					<li class="list-group-item">
+						<label id="pwordss" class="col-sm col-md col-lg">Password: </label>
+							<div class="col-sm col-md col-lg">
+								<input type="password" name="pwds" id="pwd">
+							</div>
+					</li>
+					<li class="list-group-item">
+						<div class="btn-group">
+							<div class="btn btn-secondary">
+								<input type="radio" name="options" id="opt1" autocomplete="off" value="male">
+									Male
+							</div>
+							<div class="btn btn-secondary" >
+								<input type="radio" name="options" id="opt2" autocomplete="off" value="female">
+									Female
+							</div>
+						</div>
+					</li>
+					<li class="list-group-item">
+						<label id="mailss" class="col-sm col-md col-lg">Email: </label>
+							<div class="col-sm col-md col-lg">
+								<input type="email" name="emails" id="email">
+							</div>
+					</li>
+					<li class="list-group-item">
+						<label id="bdatess" class="col-sm col-md col-lg">Birthdate: </label>
+							<div class="col-sm col-md col-lg">
+								<input class="form-control" type="date" name="birthdates" id="birthdate">
+							</div>
+					</li>
+					<li class="list-group-item">
+						<div id="allResult"></div>
+					</li>
+					<li class="list-group-item">
+						<input id="submit" type="submit" class="btn btn-info" name="submit" value="Submit">	
+					</li>
+				</ul>
+			</div>
+		</form>
+	</div>
+	
+	<div class="row">
+		<div class="col-sm col-md col-lg">
+			<select onchange="printSelectedVal()" id="allSelect" class="selectpicker">
+				<option id="o1">First Name</option>
+				<option id="o2">Last Name</option>
+				<option id="o3">User Name</option>
+				<option id="o4">Password</option>
+				<option id="o5">Gender</option>
+				<option id="o6">Email</option>
+				<option id="o7">Birthdate</option>
+			</select>
+				<li class="list-group-item">
+					<input type="text" name="selectedValDemo" id="selectedValDemo" disabled>
+				</li>
+		</div>
+		<div class="col-sm col-md col-lg">
+			<select id="allArray" class="selectpicker">
+			</select>
+			<div id="allArrayResult"></div>
+		</div>
+	</div>
+	
+</script>
+
+<script id="Forgetpassword" type="text/html">
+	<div class="row">
+		<form action="#" method="post">
+			<div class="form-group row">
+				<ul class="list-group">
+					<li class="list-group-item">
+						<label id="mail" class="col-sm-4 col-md-4 col-lg-4">Email: </label>
+							<div class="col-sm-8 col-md-8 col-lg-8">
+								<input type="email" name="email">
+							</div>
+					</li>
+					<li class="list-group-item">
+						<input type="submit" class="btn btn-info" name="submit" value="Submit">
+					</li>
+				</ul>
+			</div>
+		</form>
+	</div>
+</script>
+
+</script>
+

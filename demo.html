@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="bootstrap.min.css">
+	<script src="jquery-3.3.1.min.js"></script>
+	<script src="jquery.mustache.js"></script>
+	<script src="mustache.js"></script>
+	<script src="bootstrap.min.js"></script>
+	<title></title>
+</head>
+<body>
+
+<div class="row">
+		<form method="post" action="login.php"  class="pure-form" id="MainForm">
+			<div class="form-group row">
+				<ul class="list-group">
+					<li class="list-group-item">
+						<label id="firstnamess" class="col-sm col-md col-lg">User Name: </label>
+							<div class="col-sm col-md col-lg">
+								<input type="text" name="firstnames" id="firstname">
+							</div>
+					</li>
+					<li class="list-group-item">
+						<label id="lastnamess" class="col-sm col-md col-lg">First Name: </label>
+							<div class="col-sm col-md col-lg">
+								<input type="text" name="lastnames" id="lastname">
+							</div>
+					</li>
+					<li class="list-group-item">
+						<label id="unamess" class="col-sm col-md col-lg">Last Name: </label>
+							<div class="col-sm col-md col-lg">
+								<input type="text" name="unames" id="uname">
+							</div>
+					</li>
+					<li class="list-group-item">
+						<label id="pwordss" class="col-sm col-md col-lg">Password: </label>
+							<div class="col-sm col-md col-lg">
+								<input type="password" name="pwds" id="pwd">
+							</div>
+					</li>
+					<li class="list-group-item">
+						<div class="btn-group">
+							<div class="btn btn-secondary">
+								<input type="radio" name="options" id="opt1" autocomplete="off" value="male">
+									Male
+							</div>
+							<div class="btn btn-secondary" >
+								<input type="radio" name="options" id="opt2" autocomplete="off" value="female">
+									Female
+							</div>
+						</div>
+					</li>
+					<li class="list-group-item">
+						<label id="mailss" class="col-sm col-md col-lg">Email: </label>
+							<div class="col-sm col-md col-lg">
+								<input type="email" name="emails" id="email">
+							</div>
+					</li>
+					<li class="list-group-item">
+						<label id="bdatess" class="col-sm col-md col-lg">Birthdate: </label>
+							<div class="col-sm col-md col-lg">
+								<input class="form-control" type="date" name="birthdates" id="birthdate">
+							</div>
+					</li>
+					<li class="list-group-item">
+						<div id="allResult"></div>
+					</li>
+					<li class="list-group-item">
+						<input id="submit" type="submit" class="btn btn-info" name="submit" value="Submit">	
+					</li>
+				</ul>
+			</div>
+		</form>
+	</div>
+<script type="text/javascript">
+	var arrSample = [];
+	var arrDemo = [];
+	var checkGender = function() {
+							if(document.getElementById('opt1').checked) {
+								return true;
+							};
+								return false
+						}
+	var selectArray = document.getElementById('allArray');
+
+function refreshBrowser() {
+	alert('Fill out Everything')
+	window.location.reload()
+}
+function declareThem() {
+	arrDemo[$('#firstname').val()] = 
+		{
+			Username: $('#firstname').val(),
+			Firstname: $('#lastname').val(),
+			Lastname: $('#uname').val(),
+			Password: $('#pwd').val(),
+			Email: $('#email').val(),
+			Birthdate: $('#birthdate').val(),
+			Gender: checkGender() ? 'Male' : 'Female'
+		};
+			return arrDemo;
+}
+
+function clearIt() {
+	$('#firstname').val("")
+	$('#lastname').val("")
+	$('#uname').val("")
+	$('#pwd').val("")
+	$('#email').val("")
+	$('#birthdate').val("")
+	$('input[type=radio]').attr('checked',false);
+}	
+
+
+function birthDateDemo() {
+	 today = new Date();
+	 exactToday = today.getFullYear();
+	 bdayVal = document.getElementById('birthdate').value.split('-')
+	 bdayYear = bdayVal[0];
+	 ageResult = exactToday - bdayYear;
+	 ageResultPlusTime = ageResult + " Age|Time " + today;
+	 return ageResultPlusTime;
+}
+
+$('#MainForm').submit(function(e) {
+		
+	//	document.getElementById('MainForm').action = "login.php";
+
+		for(var i in sessionStorage) {
+			var firstNameCheck = $('#firstname').val();
+				if(i == firstNameCheck) {
+					alert('Username Same')
+				}
+		}
+	declareThem();
+		//********************LOCAL STORAGE****************************
+		var convertAnother = JSON.stringify(arrDemo[$('#firstname').val()])
+		sessionStorage.setItem($('#firstname').val(), convertAnother);
+		var retrieveStorage = sessionStorage.getItem($('#firstname').val());
+		var convertType = JSON.parse(retrieveStorage);
+		//**************************************************************
+		var loginAjx = $('#MainForm').serialize();
+		$.ajax({
+			url: 'login.php',
+			type: 'post',
+			data: loginAjx,
+			success: function(response) {
+				console.log(response);
+			}
+		});
+		/*$.getJSON({
+			url: 'login.php',
+			type: 'post',
+			data: JSON.stringify(loginAjx),
+			dataType: 'json',
+			success: function(response,status) {
+				console.log(response,status)
+			}
+		})*///$fname not shown
+
+	//	document.getElementById('MainForm').action();
+	clearIt();
+	e.preventDefault();
+});
+
+function printSelectedVal() {
+	$('#o1').val($('#firstname').val());
+	$('#o2').val($('#lastname').val());
+	$('#o3').val($('#uname').val());
+	$('#o4').val($('#pwd').val());
+	$('#o5').val(arrDemo.Gender);
+	$('#o6').val($('#email').val());
+	$('#o7').val($('#birthdate').val());
+	var selectedValDemos = $('#allSelect').val();
+	$('#selectedValDemo').val(selectedValDemos);
+}
+
+</script>
+</body>
+</html>
+
